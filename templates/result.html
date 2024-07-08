@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Classifier</title>
+    <style>
+        .prediction-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .predicted-label {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .food-image {
+            max-width: 400px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Food Classifier</h1>
+
+    <div class="prediction-container">
+        {% if prediction %}
+            <p class="predicted-label">Predicted Food: {{ prediction }}</p>
+            <p>Accuracy: {{ accuracy }}</p>
+            <img class="food-image" src="data:image/jpeg;base64,{{ image_data }}" alt="Predicted Food">
+        {% elif status == 'low_accuracy' %}
+            <p>Unable to recognize the food with sufficient accuracy.</p>
+        {% elif status == 'error' %}
+            <p>An error occurred: {{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
